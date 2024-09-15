@@ -1,0 +1,99 @@
+2024-09-13 23:36:20.560 Verbose logging enabled
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2024-09-13 23:36:21.030 Verbose logging enabled
+ /$$      /$$ /$$                     /$$      /$$                     /$$      
+| $$  /$ | $$|__/                    | $$$    /$$$                    | $$      
+| $$ /$$$| $$ /$$  /$$$$$$   /$$$$$$ | $$$$  /$$$$  /$$$$$$   /$$$$$$$| $$   /$$
+| $$/$$ $$ $$| $$ /$$__  $$ /$$__  $$| $$ $$/$$ $$ /$$__  $$ /$$_____/| $$  /$$/
+| $$$$_  $$$$| $$| $$  \__/| $$$$$$$$| $$  $$$| $$| $$  \ $$| $$      | $$$$$$/ 
+| $$$/ \  $$$| $$| $$      | $$_____/| $$\  $ | $$| $$  | $$| $$      | $$_  $$ 
+| $$/   \  $$| $$| $$      |  $$$$$$$| $$ \/  | $$|  $$$$$$/|  $$$$$$$| $$ \  $$
+|__/     \__/|__/|__/       \_______/|__/     |__/ \______/  \_______/|__/  \__/
+
+port:                         8081
+enable-browser-proxying:      false
+no-request-journal:           false
+verbose:                      true
+
+2024-09-13 23:36:25.810 Request received:
+0:0:0:0:0:0:0:1 - GET /products
+
+Cookie: [JSESSIONID=C7EBC0CA2C44527A40357C57DF0F29BF]
+Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7]
+Connection: [keep-alive]
+User-Agent: [Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36]
+Sec-Fetch-Site: [none]
+Sec-Fetch-Dest: [document]
+Host: [localhost:8081]
+Accept-Encoding: [gzip, deflate, br, zstd]
+Sec-Fetch-Mode: [navigate]
+sec-ch-ua: ["Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"]
+sec-ch-ua-mobile: [?0]
+Cache-Control: [max-age=0]
+Upgrade-Insecure-Requests: [1]
+sec-ch-ua-platform: ["Windows"]
+Sec-Fetch-User: [?1]
+Accept-Language: [pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7]
+
+
+
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "[{\"id\":\"Dwt5F7KAhi\",\"name\":\"Amazing Pizza!\",\"price\":1099},{\"id\":\"PWWe3w1SDU\",\"name\":\"Amazing Burger!\",\"price\":999},{\"id\":\"C8GDyLrHJb\",\"name\":\"Amazing Salad!\",\"price\":499},{\"id\":\"4MB7UfpTQs\",\"name\":\"Boring Fries!\",\"price\":199}]",
+  "headers" : {
+    "Content-Type" : "application/json"
+  }
+}
+
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+
+[{"id":"Dwt5F7KAhi","name":"Amazing Pizza!","price":1099},{"id":"PWWe3w1SDU","name":"Amazing Burger!","price":999},{"id":"C8GDyLrHJb","name":"Amazing Salad!","price":499},{"id":"4MB7UfpTQs","name":"Boring Fries!","price":199}]
+
+2024-09-13 23:36:25.870 
+                                               Request was not matched
+                                               =======================
+
+-----------------------------------------------------------------------------------------------------------------------
+| Closest stub                                             | Request                                                  |
+-----------------------------------------------------------------------------------------------------------------------
+                                                           |
+GET                                                        | GET
+/products                                                  | /favicon.ico                                        <<<<< URL does not match
+                                                           |
+                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+
+2024-09-13 23:36:25.871 Request received:
+0:0:0:0:0:0:0:1 - GET /favicon.ico
+
+Cookie: [JSESSIONID=C7EBC0CA2C44527A40357C57DF0F29BF]
+Accept: [image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8]
+Connection: [keep-alive]
+User-Agent: [Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36]
+Referer: [http://localhost:8081/products]
+Sec-Fetch-Site: [same-origin]
+Sec-Fetch-Dest: [image]
+Host: [localhost:8081]
+Accept-Encoding: [gzip, deflate, br, zstd]
+Sec-Fetch-Mode: [no-cors]
+sec-ch-ua: ["Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"]
+sec-ch-ua-mobile: [?0]
+sec-ch-ua-platform: ["Windows"]
+Accept-Language: [pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7]
+
+
+
+Matched response definition:
+(no response definition configured)
+
+Response:
+HTTP/1.1 404
+(no headers)
+
+
+2024-09-13 23:36:25.879 Received request to /not-matched with body 
