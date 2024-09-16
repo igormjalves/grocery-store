@@ -9,7 +9,7 @@ Java API using Spring Boot, consisting in of a payment system API consuming a gi
 - [Usage](#usage)
 - [Future Improvements](#future-improvements)
 - [Follow Up Questions](#follow-up-questions)
-- [Extra Question](#configuration)
+- [Extra Question](#extra-question)
 
 ## Introduction
 
