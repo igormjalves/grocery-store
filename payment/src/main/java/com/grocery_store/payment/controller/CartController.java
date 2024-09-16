@@ -4,16 +4,16 @@ import com.grocery_store.payment.dto.ProductRequest;
 import com.grocery_store.payment.model.Cart;
 import com.grocery_store.payment.model.CartStatus;
 import com.grocery_store.payment.service.CartService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/carts")
-@Validated
 public class CartController {
 
     private final CartService cartService;

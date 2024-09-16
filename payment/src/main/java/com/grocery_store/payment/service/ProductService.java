@@ -1,12 +1,16 @@
 package com.grocery_store.payment.service;
 
 import com.grocery_store.payment.dto.Product;
+import com.grocery_store.payment.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -32,6 +36,11 @@ public class ProductService {
 
     public Product getProductById(String id) {
         String url = productApiUrl + "/" + id;
-        return restTemplate.getForObject(url, Product.class);
+        try {
+            ResponseEntity<Product> response = restTemplate.getForEntity(url, Product.class);
+            return response.getBody();
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new ResourceNotFoundException("Product not found with id: " + id);
+        }
     }
 }

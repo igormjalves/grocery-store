@@ -1,7 +1,6 @@
 package com.grocery_store.payment.service;
 
 import static com.grocery_store.payment.util.ApplicationUtils.convertPriceToPounds;
-import static com.grocery_store.payment.util.ApplicationUtils.round;
 import com.grocery_store.payment.dto.Product;
 import com.grocery_store.payment.dto.ProductRequest;
 import com.grocery_store.payment.dto.Promotion;
@@ -14,7 +13,7 @@ import com.grocery_store.payment.repository.CartRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
