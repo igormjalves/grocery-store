@@ -42,7 +42,7 @@ public class CartService {
         for (ProductRequest request : productRequests) {
             Product productMatch = productList
                     .stream()
-                    .filter(product -> product.getId().equals(request.getProductId()))
+                    .filter(product -> product.id().equals(request.getProductId()))
                     .findFirst().orElse(null);
             addOrRemoveCartProduct(cart, request, productMatch, true);
         }
@@ -66,7 +66,7 @@ public class CartService {
         productRequests.forEach(request -> {
             Product productMatch = productList
                     .stream()
-                    .filter(product -> product.getId().equals(request.getProductId()))
+                    .filter(product -> product.id().equals(request.getProductId()))
                     .findFirst().orElse(null);
             addOrRemoveCartProduct(cart, request, productMatch, add);
         });
@@ -106,7 +106,7 @@ public class CartService {
             }
         } else {
             CartItem newItem = new CartItem();
-            ProductInfo productInfo = new ProductInfo(product.getId(), product.getName());
+            ProductInfo productInfo = new ProductInfo(product.id(), product.name());
             newItem.setProductInfo(productInfo);
             newItem.setQuantity(productRequest.getQuantity());
             newItem.setCart(cart);
@@ -122,11 +122,11 @@ public class CartService {
         for (CartItem item : cart.getItems()) {
             Optional<Product> productInList = productList
                     .stream()
-                    .filter(product -> product.getId().equals(item.getProductInfo().getProductId()))
+                    .filter(product -> product.id().equals(item.getProductInfo().getProductId()))
                     .findFirst();
             double originalPrice = 0;
             if(productInList.isPresent()) {
-                originalPrice = productInList.get().getPrice() * item.getQuantity();
+                originalPrice = productInList.get().price() * item.getQuantity();
             } else {
                 throw new ResourceNotFoundException("Product not found with id: " + item.getProductInfo().getProductId());
             }
@@ -144,11 +144,11 @@ public class CartService {
 
     private double calculateNetPrice(CartItem item, Product product) {
 
-        double totalPrice = product.getPrice() * item.getQuantity();
+        double totalPrice = product.price() * item.getQuantity();
 
-        if (product.getPromotions() != null) {
-            for (Promotion promotion : product.getPromotions()) {
-                totalPrice -= applyPromotion(promotion, item, product.getPrice());
+        if (product.promotions() != null) {
+            for (Promotion promotion : product.promotions()) {
+                totalPrice -= applyPromotion(promotion, item, product.price());
             }
         }
         return totalPrice;
@@ -157,21 +157,21 @@ public class CartService {
     private double applyPromotion(Promotion promotion, CartItem item, double price) {
         int quantity = item.getQuantity();
 
-        switch (promotion.getType()) {
+        switch (promotion.type()) {
             case "QTY_BASED_PRICE_OVERRIDE":
-                if (quantity >= promotion.getRequired_qty()) {
-                    int numOfDiscounts = quantity / promotion.getRequired_qty();
-                    int remainingItems = quantity % promotion.getRequired_qty();
+                if (quantity >= promotion.required_qty()) {
+                    int numOfDiscounts = quantity / promotion.required_qty();
+                    int remainingItems = quantity % promotion.required_qty();
 
-                    return (price * quantity) - (promotion.getPrice() * numOfDiscounts + remainingItems * price);
+                    return (price * quantity) - (promotion.price() * numOfDiscounts + remainingItems * price);
                 }
             case "BUY_X_GET_Y_FREE":
-                if (quantity >= promotion.getRequired_qty()) {
-                    int freeItems = (quantity / promotion.getRequired_qty()) * promotion.getFree_qty();
+                if (quantity >= promotion.required_qty()) {
+                    int freeItems = (quantity / promotion.required_qty()) * promotion.free_qty();
                     return freeItems * price;
                 }
             case "FLAT_PERCENT":
-                return (price * quantity * promotion.getAmount()) / 100.0;
+                return (price * quantity * promotion.amount()) / 100.0;
             default:
                 return 0D;
         }
