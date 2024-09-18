@@ -34,11 +34,11 @@ The goal is to create a job that queries a weather API at a configurable schedul
 
 ```/api/carts``` - **GET** - list of all carts\
 ```/api/carts/{id}``` - **GET** - get a cart by id<br>
-```/api/baskets/create``` - **POST** - create a new cart (required a form as body)\
-```/api/baskets/add/{id}``` - **PATCH** - add items into an already existent cart (required a form as body)\
-```/api/baskets/remove/{id}``` - **PATCH** - remove items from an already existent cart (required a form as body)\
-```/api/baskets/checkout/{id}``` - **PATCH** - change basket status to CHECKOUT\
-```/api/baskets/completed/{id}``` - **PATCH** - change basket status to COMPLETED
+```/api/carts/create``` - **POST** - create a new cart (required a form as body)\
+```/api/carts/add/{id}``` - **PATCH** - add items into an already existent cart (required a form as body)\
+```/api/carts/remove/{id}``` - **PATCH** - remove items from an already existent cart (required a form as body)\
+```/api/carts/checkout/{id}``` - **PATCH** - change basket status to CHECKOUT\
+```/api/carts/completed/{id}``` - **PATCH** - change basket status to COMPLETED
 
 ```/api/products``` - **GET** - list all products\
 ```/api/products/{productId}``` - **GET** - get product using id<br>
